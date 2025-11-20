@@ -1,215 +1,160 @@
-# M4_Evaluación del módulo
+# Evaluación de Módulo 4
 
-Este proyecto implementa un sistema de gestión de biblioteca utilizando **Programación Orientada a Objetos (POO)** en **Python 3.12.2**.  
-Permite gestionar libros físicos y digitales, con persistencia de datos en un archivo `biblioteca.txt`.
+## Hans Schiess
 
----
+![Python](https://img.shields.io/badge/Python-3.12%2B-blue?style=for-the-badge&logo=python)
 
-## Funcionalidades
-
-- Agregar libros físicos y digitales.
-- Eliminar libros por título.
-- Listar todos los libros, mostrando su **estado** (disponible o prestado).
-- Buscar libros por título.
-- Marcar un libro como **prestado**.
-- Devolver un libro prestado.
-- Persistencia automática en `biblioteca.txt`.
+Este proyecto implementa un sistema de gestión de biblioteca utilizando **Programación Orientada a Objetos (POO)**. Permite administrar libros físicos y digitales, con persistencia de datos en un archivo de texto (`biblioteca.txt`).
 
 ---
 
-## Estructura de Archivos
+## ✨ Funcionalidades
+
+- **Agregar** libros físicos y digitales.
+- **Eliminar** libros por título.
+- **Listar** todos los libros, mostrando su estado (disponible o prestado).
+- **Buscar** libros por título.
+- **Marcar** un libro como **prestado**.
+- **Devolver** un libro prestado.
+- **Persistencia automática** en `biblioteca.txt`.
+
+---
+
+## 📂 Estructura de Archivos
 
 ```text
-biblioteca_gestor/
+evaluacion_de_modulo_4/
 │
-├── libro.py              # Clase Libro
+├── libro.py              # Clase base Libro
 ├── libro_digital.py      # Clase LibroDigital (hereda de Libro)
-├── biblioteca.py         # Clase Biblioteca (gestiona lista y archivo)
-├── gestor_biblioteca.py  # Menú principal para interactuar con la biblioteca
-├── biblioteca.txt        # Archivo de persistencia de datos (se genera solo)
-├── README.md             # Documentación del proyecto
-└── diagrama_clases.drawio  # Diagrama UML de las clases
+├── biblioteca.py         # Clase Biblioteca (gestiona libros y archivo)
+├── gestor_biblioteca.py  # Menú principal y punto de entrada
+├── biblioteca.txt        # Archivo de datos (se genera automáticamente)
+├── README.md             # Esta documentación
+└── diagrama_clases.png   # Diagrama UML de las clases
 ```
 
 ---
 
-## Ejecución del Programa
+## Diagrama de Clases (UML)
 
-1. Asegúrate de tener **Python 3.12.2** instalado.  
-   Verifica con:
+El siguiente diagrama muestra la relación entre las clases del sistema:
 
-   ```bash
-   python --version
-   ```
+![Diagrama de Clases](diagrama_clases.png)
 
-2. Entra a la carpeta del proyecto:
+---
 
-   ```bash
-   cd biblioteca_gestor
-   ```
+## 🚀 Ejecución
+
+1. Asegúrate de tener **Python 3.8** o superior instalado.
+
+    ```bash
+    python --version
+    ```
+
+2. Desde la terminal, navega a la carpeta del proyecto.
 
 3. Ejecuta el programa principal:
 
-   ```bash
-   python gestor_biblioteca.py
-   ```
+    ```bash
+    python gestor_biblioteca.py
+    ```
 
 ---
 
-## Menú Principal
-
-Al ejecutar, verás:
-
-```terminal
---- Gestor de Biblioteca ---
-1. Agregar libro
-2. Eliminar libro
-3. Ver todos los libros
-4. Buscar libro
-5. Marcar libro como prestado
-6. Devolver libro
-7. Salir
-Elige una opción:
-```
-
----
-
-## Ejemplo de Uso
+## 💻 Ejemplo de Uso
 
 ### 1. Agregar un libro físico
 
 ```terminal
-Elige una opción: 1
+--- Menú de Biblioteca ---
+...
+Seleccione una opción: 1
 
---- Agregar Libro ---
+---  Agregar Libro ---
 1. Libro físico
-2. Libro digital
-3. Cancelar
-Elige el tipo de libro: 1
-Título: El Quijote
-Autor: Cervantes
-Año de publicación: 1605
-Libro 'El Quijote' agregado correctamente.
+...
+Seleccione el tipo de libro a agregar: 1
+Ingrese el título: El Quijote
+Ingrese el autor: Cervantes
+Ingrese el año de publicación: 1605
+Libro 'El Quijote' agregado a la biblioteca.
 ```
 
 ### 2. Agregar un libro digital
 
 ```terminal
-Elige una opción: 1
-
---- Agregar Libro ---
-1. Libro físico
-2. Libro digital
-3. Cancelar
-Elige el tipo de libro: 2
-Título: Clean Code
-Autor: Robert C. Martin
-Año de publicación: 2008
-Formatos permitidos: pdf, epub, mobi, azw, txt
-Formato: pdf
-Libro 'Clean Code' agregado correctamente.
+Seleccione una opción: 1
+...
+Seleccione el tipo de libro a agregar: 2
+Ingrese el título: Clean Code
+Ingrese el autor: Robert C. Martin
+Ingrese el año de publicación: 2008
+Ingrese el formato (pdf, epub, mobi, azw, txt): pdf
+Libro 'Clean Code' agregado a la biblioteca.
 ```
 
-### 3️. Ver todos los libros
+### 3. Ver todos los libros
 
 ```terminal
-Elige una opción: 3
-Título: El Quijote, Autor: Cervantes, Año: 1605, Estado: Disponible
-Título: Clean Code, Autor: Robert C. Martin, Año: 2008, Estado: Disponible, Formato: PDF
-```
-
-### 4️. Prestar un libro
-
-```terminal
-Elige una opción: 5
-Título a prestar: El Quijote
-Libro 'El Quijote' marcado como prestado.
-```
-
-### 5️. Devolver un libro
-
-```terminal
-Elige una opción: 6
-Título a devolver: El Quijote
-Libro 'El Quijote' devuelto correctamente.
+Seleccione una opción: 3
+Título: El Quijote, Autor: Cervantes, Año de publicación: 1605, Estado: Disponible
+Título: Clean Code, Autor: Robert C. Martin, Año de publicación: 2008, Estado: Disponible, Formato: PDF
 ```
 
 ---
 
-## Manejo de Excepciones
+## ⚠️ Manejo de Excepciones
 
-El sistema captura y muestra mensajes claros cuando ocurren errores:
+El sistema captura y muestra mensajes claros ante errores comunes:
 
-- Intentar eliminar un libro inexistente:
-
-  ```terminal
-  Error: No se encontró el libro con título 'Inexistente'.
-  ```
-
-- Prestar un libro que ya está prestado:
-  
-  ```terminal
-  Error: El libro 'El Quijote' ya está prestado.
-  ```
-
-- Devolver un libro que no estaba prestado:
-  
-  ```terminal
-  Error: El libro 'El Quijote' ya estaba disponible.
-  ```
-
-- Biblioteca vacía al intentar eliminar/prestar/devolver:
-
-  ```terminal
-  Error: No hay libros registrados en la biblioteca.
-  ```
+- **Libro no encontrado:** `No se encontró el libro con título 'Inexistente'.`
+- **Libro ya prestado:** `El libro 'El Quijote' ya está prestado.`
+- **Libro ya disponible:** `El libro 'Clean Code' ya estaba disponible.`
+- **Biblioteca vacía:** `No hay libros registrados en la biblioteca.`
 
 ---
 
 ## 🛠️ Notas Técnicas
 
-### 1. Uso de atributos con doble guion bajo (`__atributo`)
+### 1. Formato de `biblioteca.txt`
 
-En Python, los atributos que comienzan con doble guion bajo (`__`) se vuelven **privados** mediante un mecanismo llamado *name mangling*.  
-Esto significa que internamente Python cambia el nombre para que no se pueda acceder directamente desde fuera de la clase.  
-Por ejemplo:
+Los datos se guardan con un formato específico, usando `|` como separador. Esto permite al programa leer y reconstruir los objetos correctamente.
+
+- **Formato:** `tipo|titulo|autor|año|formato|estado`
+
+- **Ejemplo libro físico:**
+  
+  ```terminal
+  fisico|El Quijote|Cervantes|1605||disponible
+  ```
+
+  *(El campo de formato se deja vacío)*
+
+- **Ejemplo libro digital:**
+  
+  ```terminal
+  digital|Clean Code|Robert Martin|2008|pdf|disponible
+  ```
+
+### 2. Encapsulación (`__atributo`)
+
+En Python, los atributos que comienzan con `__` (doble guion bajo) son tratados como **privados**. Esto se logra mediante un mecanismo llamado *name mangling*, que cambia internamente el nombre del atributo para evitar que sea accedido directamente desde fuera de la clase.
 
 ```python
 class Libro:
     def __init__(self, titulo):
-        self.__titulo = titulo  # atributo privado
+        self.__titulo = titulo  # Atributo privado
 ```
 
-Esto evita accesos accidentales desde fuera de la clase y fomenta la **encapsulación**.  
-La forma correcta de acceder o modificar estos atributos es mediante **getters y setters**.
+Esta práctica refuerza la **encapsulación**, asegurando que los datos se modifiquen solo a través de métodos controlados (getters y setters).
 
----
+### 3. Limpieza de Datos (`.strip()`)
 
-### 2. Uso de `.strip()` al leer el archivo
-
-Cuando el sistema carga los libros desde `biblioteca.txt`, se utiliza `.strip()`:
+Al cargar los libros desde `biblioteca.txt`, se utiliza `.strip()` para limpiar cada línea antes de procesarla.
 
 ```python
 datos = linea.strip().split("|")
 ```
 
-- `.strip()` elimina los **espacios en blanco**, saltos de línea `\n` y tabulaciones que pueda tener la línea al final o inicio.  
-- Esto asegura que los datos se procesen correctamente sin errores por caracteres “invisibles”.  
-
-Ejemplo práctico:
-
-```python
-linea = "El Quijote|Cervantes|1605|disponible\n"
-print(linea.split("|"))
-# ['El Quijote', 'Cervantes', '1605', 'disponible\n']
-
-print(linea.strip().split("|"))
-# ['El Quijote', 'Cervantes', '1605', 'disponible']
-```
-
-Sin `.strip()`, el estado habría quedado como `"disponible\n"` con salto de línea incluido, lo que rompe las comparaciones.
-
-## Hans Schiess
-
-Desarrollado como actividad práctica de **Programación Orientada a Objetos**.  
-Compatible con **Python 3.12.2**.
+`.strip()` elimina espacios en blanco, tabulaciones y saltos de línea (`\n`) al inicio y al final de la cadena. Esto es crucial para evitar errores de comparación, ya que sin él, un estado podría ser leído como `"disponible\n"` en lugar de `"disponible"`.

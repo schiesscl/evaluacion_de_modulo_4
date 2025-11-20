@@ -77,24 +77,39 @@ class Biblioteca:
                 archivo.write(f"{tipo}|{libro.get_titulo()}|{libro.get_autor()}|{libro.get_anyo_publicacion()}|{formato}|{libro.get_estado()}\n")
 
     def cargar_desde_archivo(self):
-        if not os.path.exists(self.__archivo):  # Verifica si el archivo existe
-            return                              # Si no existe, no hace nada
+        # Verifica si el archivo existe antes de intentar leerlo
+        if not os.path.exists(self.__archivo):
+            return  # Si no existe, sale del método sin hacer nada
 
         # Abre el archivo en modo lectura
         with open(self.__archivo, "r", encoding="utf-8") as archivo:
-            for linea in archivo:              # Recorre cada línea del archivo
-                datos = linea.strip().split(";")  # Elimina espacios/saltos de línea y separa por ';'
-                if len(datos) >= 5:            # Valida que tenga al menos 5 elementos
-                    # Desempaqueta los datos: tipo, titulo, autor, año, estado y resto (ej. formato digital)
-                    tipo, titulo, autor, anyo_publicacion, estado, *resto = datos
-                try:
-                    if tipo == "digital" and len(resto) > 0:  # Si es digital y hay formato
-                        formato = resto[0]                    # Obtiene el formato
-                        # Crea un objeto LibroDigital con los datos (convierte año a entero)
-                        libro = LibroDigital(titulo, autor, int(anyo_publicacion), formato, estado)
-                    else:
-                        # Crea un objeto Libro físico con los datos
-                        libro = Libro(titulo, autor, int(anyo_publicacion), estado)
-                    self.__libros.append(libro)  # Agrega el objeto a la lista
-                except ValueError as e:  # Si ocurre un error en la conversión o validación
-                    print(f"Error al cargar el libro '{titulo}': {e}")  # Muestra error y continúa
+            for linea in archivo:  # Lee línea por línea
+                # Elimina espacios y saltos de línea, luego divide por '|'
+                datos = linea.strip().split("|")
+                
+                # Valida que tenga al menos 5 campos (mínimo para un libro físico sin formato)
+                if len(datos) >= 5:
+                    # Extrae los campos básicos
+                    tipo = datos[0]
+                    titulo = datos[1]
+                    autor = datos[2]
+                    anyo_publicacion = datos[3]
+                    # Maneja el formato de forma segura (puede estar vacío o no existir)
+                    formato = datos[4] if len(datos) > 4 else ""
+                    # Maneja el estado de forma segura (debe estar en la posición 5)
+                    estado = datos[5] if len(datos) > 5 else "disponible"
+                    
+                    try:
+                        # Si es digital Y tiene formato válido (no vacío)
+                        if tipo == "digital" and formato:
+                            libro = LibroDigital(titulo, autor, int(anyo_publicacion), formato, estado)
+                        else:
+                            # Caso libro físico o digital sin formato
+                            libro = Libro(titulo, autor, int(anyo_publicacion), estado)
+                        
+                        # Agrega el libro a la lista sin imprimir mensaje
+                        self.__libros.append(libro)
+                    
+                    except ValueError as e:
+                        # Captura errores de validación (formato inválido, año no numérico, etc.)
+                        print(f"⚠️ Error al cargar el libro '{titulo}': {e}")

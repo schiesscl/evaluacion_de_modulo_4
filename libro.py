@@ -1,13 +1,13 @@
 # Definición de la clase Libro (representa un libro físico o digital)
 class Libro:
-    def __init__(self, titulo: str, autor: str, anyo_publicacion: int, estado: str = "dispobible"):
+    def __init__(self, titulo: str, autor: str, anyo_publicacion: int, estado: str = "disponible"):  # ✅ CAMBIO 1
         # Atributos privados de la clase (encapsulación con __)
         self.__titulo = titulo
         self.__autor = autor
         self.__anyo_publicacion = anyo_publicacion
         # Validación del estado: solo puede ser "disponible" o "prestado"
         if estado.lower() not in ["disponible", "prestado"]:
-            raise ValueError("El estado debe ser 'disponble' o 'prestado'.")
+            raise ValueError("El estado debe ser 'disponible' o 'prestado'.")  # ✅ CAMBIO 2
         # Se guarda el estado en minúsculas para un manejo consistente
         self.__estado = estado.lower()
         
@@ -39,7 +39,7 @@ class Libro:
     def set_estado(self, estado: str):
         # Validación: el estado solo puede ser "disponible" o "prestado"
         if estado.lower() not in ["disponible", "prestado"]:
-            raise ValueError("El estado debe ser 'disponble' o 'prestado'.")
+            raise ValueError("El estado debe ser 'disponible' o 'prestado'.")  # ✅ CAMBIO 3
         self.__estado = estado.lower()
         
     # Representación en formato legible del objeto Libro
